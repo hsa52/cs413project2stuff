@@ -1,0 +1,30 @@
+{"frames": {
+
+"villain1.png":
+{
+	"frame": {"x":1,"y":1,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":24,"h":24},
+	"sourceSize": {"w":32,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"villain2.png":
+{
+	"frame": {"x":27,"y":1,"w":18,"h":19},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":7,"y":6,"w":18,"h":19},
+	"sourceSize": {"w":32,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "villain.png",
+	"format": "RGBA8888",
+	"size": {"w":46,"h":26},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:0f945bdb3de129807c6d1f4818da60f2:0a61b3e8a6922a6836f7319000dd93fd:16cae0adbabac4eb5b997b2b4bfef49f$"
+}
+}
