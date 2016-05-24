@@ -5,12 +5,19 @@ gameport.appendChild(renderer.view);
 PIXI.loader
     .add("Blip_Select.mp3")
     .add("titlemusic.wav")
+    .add("Pickup_Coin.wav")
+    .add("Hit_Hurt.wav")
+    .add("wallhit.wav")
     .load(ready);
 
 		var blip;
 		function ready() {
 		    blip =PIXI.audioManager.getAudio("Blip_Select.mp3");
         titlemusic =PIXI.audioManager.getAudio("titlemusic.wav");
+        coinpickup =PIXI.audioManager.getAudio("Pickup_Coin.wav");
+        hurt =PIXI.audioManager.getAudio("Hit_Hurt.wav");
+        wallhit =PIXI.audioManager.getAudio("wallhit.wav");
+
 			}
 
 // set up stage and main pixi containers for sprites in the game
@@ -121,6 +128,25 @@ function mouseHandler4(){
 	tutorial.visible=0;
 	//blip.play();
 }
+
+var title3 = new PIXI.Text("GAME OVER");
+title3.visible=0;
+title3.position.x=200;
+title3.position.y=300;
+title3.anchor.x=.5;
+title3.anchor.y=.5;
+title3.interactive=true;
+title3.on('mousedown',mouseHandler5);
+titlescreen.addChild(title3);
+stage.addChild(titlescreen);
+
+function mouseHandler5(){
+	title.visible=0;
+	title1.visible=0;
+	title2.visible=0;
+  blip.play();
+	title3.visible=1;
+}
 // global variables to keep track of number of villains and blocks
 var totalvillains = 0;
 var totalblocks = 0;
@@ -196,20 +222,20 @@ function keydownEventHandler(e) {
 		character1sprite.position.x = new_position.x;
 	}
 	else if (result == 1) { // hit block
-		//blip.play();
+		wallhit.play();
 	}
 	else if (result == 2) { // hit villain
 		character1sprite.position.y = new_position.y;
 		character1sprite.position.x = new_position.x;
-		//blip.play()
 		winstate = 2;
-		title1.visible=1;
+    hurt.play()
+		title3.visible=1
 	}
 	else if (result == 3) { // hit coin
 		character1sprite.position.y = new_position.y;
 		character1sprite.position.x = new_position.x;
 		winstate = 1;
-    blip.play();
+    coinpickup.play();
     alert('YOU Won\nGood Job!!');
 	}
 	}
@@ -230,7 +256,6 @@ function checkCollisions(new_position) {
 		if ((distance.y <= (block.height/2 + character1.height/2)) // check vertical collision
 				&&
 				(distance.x <= (block.width/2 + character1.width/2))) {
-				//	blip.play();// check horizontal collision
 			return 1; // found a collision, return immediately
 		}
 	}
@@ -244,7 +269,6 @@ function checkCollisions(new_position) {
 		if ((distance.y <= (villain.height/2 + character1.height/2)) // check vertical collision
 				&&
 				(distance.x <= (villain.width/2 + character1.width/2))) { // check horizontal collision
-					//blip.play();
 			return 2; // found a collision, return immediately
 		}
 	}
